@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Arvo:700|Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/base.css" />
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/github.css" />
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/ss-social-regular.css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/base.js"></script>
+
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+
+    {% block head %} {% endblock %}
+
+</head>
+
+    {% include '_includes/ga-analytics.html' %}
+
+<body>
+
+    {% block header %} {% endblock %}
+    {% block nav %} {% endblock %}
+
+    {% block content %} {% endblock %}
+
+</body>
+
+</html>

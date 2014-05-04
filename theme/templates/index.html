@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %} {% include '_includes/home_banner.html' %} {% endblock %}
+{% block nav %} {% include '_includes/nav.html' %} {% endblock %}
+
+{% block content %}
+
+    <div class=row>
+        <div class="col-md-offset-2 col-md-8">
+            <h1> Posts </h1>
+        </div>
+    </div>
+
+
+    <div class=row>
+        <div class="col-md-offset-2 col-md-8">
+            <div class=".table-responsive">
+                <table class="table">
+                    <tr><th>Title</th><th>Date</th><th>Category</th><th>Tags</th></tr>
+                    {% for article in articles %}
+                        <tr class="clickable" href={{ article.url }}>
+                            <td>{{ article.date.strftime("%Y-%m-%d") }}</td>
+                            <td>{{ article.title }}</td>
+                            <td>{{ article.category}} </td>
+                            <td>{{ article.tags|join(', ') }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2">
+            {% include '_includes/social.html' %}
+        </div>
+    </div>
+
+{% endblock %}

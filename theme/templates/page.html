@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %} {% include '_includes/small_header.html' %}{% endblock %}
+
+{% block nav %} {% include '_includes/nav.html' %} {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="page-header">
+                    <h1>{{ page.title }}<br /><small>{{ page.summary }}</small></h1>
+              </div>
+        </div>
+    </div>
+
+    <div class="row content">
+        <div class="col-md-offset-2 col-md-8">
+            {{ page.content }}
+        </div>
+        <div class="col-md-2">
+            {% include '_includes/social.html' %}
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% if article.ipython %}
+        <link rel="stylesheet" href="/theme/css/ipython.css">
+    {% endif %}
+{% endblock %}
+
+{% block header %} {% include '_includes/small_header.html' %}{% endblock %}
+
+{% block nav %} {% include '_includes/nav.html' %} {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="page-header">
+                    <h1>{{ article.title }}<br /><small>{{ article.summary }}</small></h1>
+              </div>
+        </div>
+    </div>
+
+    <div class="row content">
+        <div class="col-md-offset-2 col-md-8">
+            {{ article.content }}
+        </div>
+        <div class="col-md-2">
+            {% include '_includes/social.html' %}
+        </div>
+    </div>
+
+    <div class="row content">
+        <div class="col-md-offset-2 col-md-8">
+            <p>- By Trent Hauck</p>
+        </div>
+    </div>
+
+
+{% endblock %}
