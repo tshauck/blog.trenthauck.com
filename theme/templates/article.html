@@ -4,6 +4,11 @@
     {% if article.ipython %}
         <link rel="stylesheet" href="/theme/css/ipython.css">
     {% endif %}
+
+    {% if article.testpost == 'yes' %}
+        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/planout_testpost.js"></script>
+    {% endif %}
+
 {% endblock %}
 
 {% block header %} {% include '_includes/small_header.html' %}{% endblock %}

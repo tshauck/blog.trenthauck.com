@@ -53,7 +53,7 @@ slug: goals
     <td></td>
 </tr>
 
-<tr
+<tr>
     <td>Read <a href="http://plato.stanford.edu/entries/causation-counterfactual/">Counter Factual Therories</a></td>
     <td></td>
     <td></td>

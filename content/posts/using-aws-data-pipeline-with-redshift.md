@@ -3,7 +3,7 @@ slug: using-aws-data-pipeline-with-redshift
 date: 2013-05-26
 summary: How to use two of AWS's nicest data products together.
 category: Code
-tags: Data Science, Intrastructure, Code
+tags: Ops, Code
 
 _Update_: This is now built in functionality - no hacks required.
 

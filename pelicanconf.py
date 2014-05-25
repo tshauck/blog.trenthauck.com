@@ -20,7 +20,7 @@ RELATIVE_URLS = True
 MARKUP = ('md', 'ipynb')
 
 PLUGIN_PATH = './plugins'
-#PLUGINS = ['ipythonnb']
+PLUGINS = ['render_math']
 
 THEME = './theme'
 
