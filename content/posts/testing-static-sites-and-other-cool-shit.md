@@ -28,7 +28,8 @@ href="https://twitter.com/deaneckles/statuses/469980676494594049">May 23,
 
 ... that got my brain going.  First I thought, man I'd love to attend (and still
 would), but since that's unlikely I thought I should run my own field
-experiment.  And with that a Memorial Day Weekend hack was born.
+experiment.  And with that I decided to make the time and a Memorial Day Weekend
+hack was born.
 
 ## AB Testing With Static Sites
 
@@ -36,16 +37,16 @@ Dynamic stuff on static sites is not easy, and it's not supposed to be.  The
 whole idea is to trade off the dynamism for easy content generation.  That
 said, there's no reason why SOA concepts don't apply.
 
-So the idea is pretty simple, put PlanOut behind an API, use client side JS call
+So the idea is pretty simple, put PlanOut behind an API, use client side JS to call
 the API and serve the treatment, and then use GA to store the response.  Oh,
-also, use some other cool shit (hence the title) along the way.
+also, use some other cool shit along the way.
 
 # Plan of Action
 
 Some more detail on how this will work:
 
 1. The Experiment: Setup a PlanOut Experiment with treatments, overwrite PlanOut's
-   logging to log the exposures to postgres.  The experiment will be of 3x2
+   logging to log the exposures to postgres.  The experiment will be a 3x2
    factorial design with three variants of a message used and two styles.  The
    unit with be a cookie\_id, which I'll talk more about in a bit.
 2. The Glue: Have [Tornado][tornado] listen for incoming requests then serve the
@@ -109,10 +110,10 @@ the unit.  It would be better to have a user id, since a user id persists across
 platforms, browsers, etc.  My cookie\_id exists at the browser level (and only as
 long as the user doesn't clear local storage).
 
-## Overwriting PlanOut's Logging - Not covered well in PlanOut
+## Overwriting PlanOut's Logging
 
 From a code perspective, one thing the PlanOut documentation mentions, but
-doesn't provide details on is logging through means other than the `logging`
+doesn't provide many details on is logging through means other than the `logging`
 module.  I prefer to use postgres to make it easier to work with the data later,
 so in this section I'll demonstrate how to make that happen.
 
@@ -162,9 +163,9 @@ class PostgresLoggedExperiment(SimpleExperiment):
         self.conn.commit()
 ```
 
-The code isn't that pretty, but after simply overwriting the `configure_logger`
-method, and the `log` method storing data in postgres is now possible.  Since
-the data that is passed to `log` is json, any of `data`'s  values that are json
+The code isn't that pretty (is any database code?), but after simply overwriting the
+`configure_logger` method, and the `log` method storing data in postgres is now possible.
+Since the data that is passed to `log` is json, any of `data`'s  values that are json
 will be stored as json so I can have a row per exposure.
 
 Now to define the experiment,
@@ -180,8 +181,8 @@ class MyExp(SimpleExperiment)
 ```
 
 PlanOut seems to be a great tool.  It was designed by the top notch Engineers
-and Data Scientists specifically for this kind of work, so a lot of the tedious,
-but important aspects of online testing are handle by it.  Testing is really
+and Data Scientists at Facebook specifically for this kind of work, so a lot of the tedious,
+but important aspects of online testing are handle.  Testing is really
 easy to mess up, so having a repeatable system is important.
 
 # The Glue (The API)
@@ -263,7 +264,7 @@ Then to start the container, I call `make run`.
 PORT:=0.0.0.0:8999
 
 run:
-    docker run -d -i -t -p $(PORT):8999 --link postgresql:db thauck/planoutapi
+    docker run -d -p $(PORT):8999 --link postgresql:db thauck/planoutapi
 ```
 
 The critical part is `-d` which starts the container in the background and
@@ -291,14 +292,14 @@ variable.
 
 I'm using the [this][postgres] container setup.  It allow for the stuff
 mentioned above, but that's not was this section is about.  IMO, what's
-interesting here is JSON in postgres.  At this point there's no point in using a
+interesting here is json in postgres.  At this point there's no point in using a
 different relational database than postgres (and maybe event document store) for
 that matter.
 
 I wanted to keep a line per exposure, but I also wanted a general schema where I
 could store multiple experiments.  This is tricky when you consider an
 experiment could have several factors.  It's not straight forward how to design
-a table that can handle many experiment types.  Therefore, storing json in JSON
+a table that can handle many experiment types.  Therefore, storing json in json
 fields allows for the flat design to be maintained.
 
 Here's how the table was created:
