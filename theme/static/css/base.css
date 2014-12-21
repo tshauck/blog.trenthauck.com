@@ -102,12 +102,13 @@ td {
 }
 
 img[alt=personal_pic] { width: 200px; }
+img[alt=book_pic] { width: 200px; }
 
 .social {
     list-style-type: none;
 }
 
-.social >  li > a {
+.social > li > a {
     color: rgba(44, 62, 80, 1.0);
 }
 
