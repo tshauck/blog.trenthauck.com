@@ -37,6 +37,10 @@ then once that service client is "ok" we'll make queries to the GA API.
     # it under the hood
     from oauth2client.client import SignedJwtAssertionCredentials
 
+    # I realized after the fact that this import is missing
+    # put another way, I didn't test this :)
+    from apiclient.discovery import build
+
     f = file('pk.p12', 'rb') #you get this from api console
     key = f.read()
     f.close()

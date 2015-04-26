@@ -30,7 +30,6 @@ PAGE_SAVE_AS = '{slug}/index.html'
 
 DEFAULT_PAGINATION = False
 
-
 STATIC_PATHS = (['assets'])
 
 PATH = 'content'
